@@ -30,7 +30,8 @@ const getcurrentTemp = () => {return currentTemp}
 return {generateCurrentParse, showCurrentParce, getaddress, getcurrentCondition, getcurrentTemp}
 })();
 const button = document.querySelector('.getWeather');
-const searchLocation = document.querySelector('#searchLocation')
+const searchLocation = document.querySelector('#searchLocation');
+const overviewTitle = document.querySelector('.overviewTitle');
 const address = document.querySelector('.address');
 const currentConditions = document.querySelector('.currentConditions');
 const temp = document.querySelector('.temp');
@@ -38,6 +39,7 @@ const temp = document.querySelector('.temp');
 button.addEventListener('click', () => {
     weather.generateCurrentParse(searchLocation.value)
     .then(() => {
+        overviewTitle.textContent = 'Current Overview';
         address.textContent = weather.getaddress();
         currentConditions.textContent = weather.getcurrentCondition();
         temp.textContent = weather.getcurrentTemp();
