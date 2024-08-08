@@ -1,51 +1,31 @@
 import './style.css';
-
-const weather = (function(){
-
-let currentParse = '';
-let address = '';
-let currentCondition = '';
-let currentTemp = '';
+import { generateCurrentDOM } from './DOMgeneration.js';
+import { weather } from './weatherData';
 
 
 
-const generateCurrentParse = async function(location, startDate, endDate){
-    const raw = await fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/' + location + '?key=LK4KV98AZ6RNMYP4RLDSSSUWQ', {mode: 'cors'})
-    currentParse = await raw.json();
-
-    //allocate data:
-    address = currentParse.resolvedAddress;
-    currentCondition = currentParse.currentConditions.conditions;
-    currentTemp = currentParse.currentConditions.temp + '°F';
-}
-
-const showCurrentParce = function(){
-    console.log(currentParse);
-}
-
-const getaddress = () => {return address}
-const getcurrentCondition = () => {return currentCondition}
-const getcurrentTemp = () => {return currentTemp}
-
-return {generateCurrentParse, showCurrentParce, getaddress, getcurrentCondition, getcurrentTemp}
-})();
 const button = document.querySelector('.getWeather');
 const searchLocation = document.querySelector('#searchLocation');
-const overviewTitle = document.querySelector('.overviewTitle');
-const address = document.querySelector('.address');
-const currentConditions = document.querySelector('.currentConditions');
-const temp = document.querySelector('.temp');
+
 
 button.addEventListener('click', () => {
     weather.generateCurrentParse(searchLocation.value)
     .then(() => {
-        overviewTitle.textContent = 'Current Overview';
-        address.textContent = weather.getaddress();
-        currentConditions.textContent = weather.getcurrentCondition();
-        temp.textContent = weather.getcurrentTemp();
+        generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp())
 });
 })
 
+/*list of conditions to have an image for:
+snow	                    Amount of snow is greater than zero
+rain	                    Amount of rainfall is greater than zero
+fog	                        Visibility is low (lower than one kilometer or mile)
+wind	                    Wind speed is high (greater than 30 kph or mph)
+cloudy	                    Cloud cover is greater than 90% cover
+partly-cloudy-day	        Cloud cover is greater than 20% cover during day time.
+partly-cloudy-night	        Cloud cover is greater than 20% cover during night time.
+clear-day	                Cloud cover is less than 20% cover during day time
+clear-night	                Cloud cover is less than 20% cover during night time
+*/
 
 
 

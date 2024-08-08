@@ -1,4 +1,4 @@
-body {
+body{
     height: 100vh;
     margin: 0;
     overflow: hidden;
@@ -8,21 +8,50 @@ body {
     overflow-x: auto;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 5rem 10rem;
-    justify-items: center;
+    grid-template-rows: 5rem 10rem 1fr;
+    
     
 }
 
 .search{
+    justify-self: center;
     align-self: center;
+    padding: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
-/*.overview {
+.overview{
+    justify-self: center;
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: ;
+    
     gap: .5rem;
-    border: 5px solid black;
+    
 }
-*/
+
+.forecastDaysWrapper{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    
+    padding: 2rem;
+    
+}
+
+.forecastDays{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 300px);
+    grid-auto-rows: 300px;
+}
+
+.forecastDay{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
