@@ -3,7 +3,6 @@ import { generateCurrentDOM } from './DOMgeneration.js';
 import { weather } from './weatherData';
 
 
-
 const button = document.querySelector('.getWeather');
 const searchLocation = document.querySelector('#searchLocation');
 
@@ -11,7 +10,7 @@ const searchLocation = document.querySelector('#searchLocation');
 button.addEventListener('click', () => {
     weather.generateCurrentParse(searchLocation.value)
     .then(() => {
-        generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp())
+        generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp(), weather.getCurrentIcon())
 });
 })
 

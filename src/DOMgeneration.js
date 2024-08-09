@@ -1,22 +1,32 @@
-function generateCurrentDOM(currentAddress, currentConditions, currentTemp){
+function generateCurrentDOM(currentAddress, currentConditions, currentTemp, currentIcon){
     const overview = document.querySelector('.overview');
+    overview.classList.add('overview');
     overview.innerHTML = '';
+
+    const overviewImage = document.createElement('img');
+    overviewImage.classList.add('overviewImage');
+    overviewImage.src = currentIcon;
+    overview.appendChild(overviewImage);
     
+    const overviewInfo = document.createElement('div');
+    overviewInfo.classList.add('overviewInfo');
+    overview.appendChild(overviewInfo);
+
     const overviewTitle = document.createElement('div');
     overviewTitle.textContent = 'Current Overview';
-    overview.appendChild(overviewTitle);
+    overviewInfo.appendChild(overviewTitle);
 
     const address = document.createElement('div');
     address.textContent = currentAddress;
-    overview.appendChild(address);
+    overviewInfo.appendChild(address);
 
     const conditions = document.createElement('div');
     conditions.textContent = currentConditions;
-    overview.appendChild(conditions);
+    overviewInfo.appendChild(conditions);
     
     const temp = document.createElement('div');
     temp.textContent = currentTemp;
-    overview.appendChild(temp);
+    overviewInfo.appendChild(temp);
 }
 
 export { generateCurrentDOM }

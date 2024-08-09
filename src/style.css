@@ -26,10 +26,18 @@ body{
     justify-self: center;
     padding: 2rem;
     display: flex;
+    gap: 2rem;  
+}
+
+.overviewImage{
+    width: 6rem;
+    height: auto;
+}
+
+.overviewInfo{
+    display: flex;
     flex-direction: column;
-    
-    gap: .5rem;
-    
+    gap: .5rem;  
 }
 
 .forecastDaysWrapper{
