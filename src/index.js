@@ -5,6 +5,7 @@ import { weather } from './weatherData';
 
 const button = document.querySelector('.getWeather');
 const searchLocation = document.querySelector('#searchLocation');
+let searchLocationFocus = false;
 
 
 button.addEventListener('click', () => {
@@ -13,6 +14,27 @@ button.addEventListener('click', () => {
         generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp(), weather.getCurrentIcon())
 });
 })
+
+//Allow Enter key functionality
+searchLocation.addEventListener('focus', () => {
+    searchLocationFocus = true;
+})
+
+searchLocation.addEventListener('blur', () => {
+    searchLocationFocus = false;
+})
+
+window.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' && searchLocationFocus === true){
+        weather.generateCurrentParse(searchLocation.value)
+        .then(() => {
+        generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp(), weather.getCurrentIcon())
+        });
+    }
+    
+})
+
+
 
 /*list of conditions to have an image for:
 snow	                    Amount of snow is greater than zero
