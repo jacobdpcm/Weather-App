@@ -1,6 +1,24 @@
+const generateSearch = (function(){
+    const search = document.querySelector('.search');
+
+    const searchLabel = document.createElement('label');
+    searchLabel.htmlFor = 'searchLocation';
+    searchLabel.textContent = 'Enter a city into the field and get that weather:';
+    search.appendChild(searchLabel);
+    
+    const searchInput = document.createElement('input');
+    searchInput.id = 'searchLocation';
+    searchInput.type = 'text';
+    search.appendChild(searchInput);
+
+    const searchButton = document.createElement('button');
+    searchButton.classList.add('getWeather');
+    searchButton.textContent = 'Get Weather';
+    search.appendChild(searchButton);
+})();
+
 function generateCurrentDOM(currentAddress, currentConditions, currentTemp, currentIcon){
     const overview = document.querySelector('.overview');
-    overview.classList.add('overview');
     overview.innerHTML = '';
 
     const overviewImage = document.createElement('img');
