@@ -28,7 +28,8 @@ window.addEventListener('keydown', (e) => {
     if(e.key === 'Enter' && searchLocationFocus === true){
         weather.generateCurrentParse(searchLocation.value)
         .then(() => {
-        generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp(), weather.getCurrentIcon())
+        generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp(), weather.getCurrentIcon());
+        console.log(weather.getFifteenDays())
         });
     }
     
