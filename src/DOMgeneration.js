@@ -47,7 +47,27 @@ function generateCurrentDOM(currentAddress, currentConditions, currentTemp, curr
     overviewInfo.appendChild(temp);
 }
 
+function generate15DayDOM(forecastArray){
+    const content = document.querySelector('.forecastdays');
+    content.innerHTML = '';
+
+    forecastArray.forEach(forecastDay => {
+        const day = document.createElement('div');
+        day.classList.add('day');
+        content.appendChild(day);
+
+        const icon = document.createElement('img');
+        icon.classList.add('icon');
+        icon.src = forecastDay.icon;
+        day.appendChild(icon);
+
+        const conditions = document.createElement('div');
+        conditions.textContent = forecastDay.conditions;
+        day.appendChild(conditions);
+    });
+}
+
 //Make 15 day Forcast Now:
 
 
-export { generateCurrentDOM }
+export { generateCurrentDOM, generate15DayDOM }

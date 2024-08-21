@@ -27,6 +27,10 @@ const weather = (function(){
         currentTemp = currentParse.currentConditions.temp + '°F';
         currentIcon = convertIcon(currentParse.currentConditions.icon);
         fifteenDays = currentParse.days; 
+        //translate 15-day icons:
+        fifteenDays.forEach(day => {
+            day.icon = convertIcon(day.icon);
+        })
     }
     
     const convertIcon = (icon) => {

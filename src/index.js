@@ -1,5 +1,5 @@
 import './style.css';
-import { generateCurrentDOM } from './DOMgeneration.js';
+import { generateCurrentDOM, generate15DayDOM } from './DOMgeneration.js';
 import { weather } from './weatherData';
 
 
@@ -11,7 +11,8 @@ let searchLocationFocus = false;
 button.addEventListener('click', () => {
     weather.generateCurrentParse(searchLocation.value)
     .then(() => {
-        generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp(), weather.getCurrentIcon())
+        generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp(), weather.getCurrentIcon());
+        generate15DayDOM(weather.getFifteenDays());
 });
 })
 
@@ -29,6 +30,7 @@ window.addEventListener('keydown', (e) => {
         weather.generateCurrentParse(searchLocation.value)
         .then(() => {
         generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp(), weather.getCurrentIcon());
+        generate15DayDOM(weather.getFifteenDays());
         console.log(weather.getFifteenDays())
         });
     }
