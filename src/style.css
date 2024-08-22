@@ -58,7 +58,7 @@ body{
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(5, 200px);
-    grid-auto-rows: 200px;
+    grid-auto-rows: 250px;
 }
 
 .day{
@@ -66,6 +66,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: .5rem;
     
 }
 

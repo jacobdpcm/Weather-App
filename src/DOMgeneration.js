@@ -56,6 +56,10 @@ function generate15DayDOM(forecastArray){
         day.classList.add('day');
         content.appendChild(day);
 
+        const date = document.createElement('div');
+        date.textContent = forecastDay.datetime.slice(5);
+        day.appendChild(date);
+
         const icon = document.createElement('img');
         icon.classList.add('icon');
         icon.src = forecastDay.icon;
@@ -64,6 +68,21 @@ function generate15DayDOM(forecastArray){
         const conditions = document.createElement('div');
         conditions.textContent = forecastDay.conditions;
         day.appendChild(conditions);
+
+        //temp
+        const temp = document.createElement('div');
+        temp.textContent = forecastDay.temp + '°F';
+        day.appendChild(temp);
+
+        //min and max temp
+        const minmax = document.createElement('div');
+        minmax.textContent = 'Min: ' + forecastDay.tempmin + '°F,   Max: ' + forecastDay.tempmax + '°F'
+        day.appendChild(minmax);
+
+        //humidity
+        const humidity = document.createElement('div');
+        humidity.textContent = 'Humidity: ' + forecastDay.humidity;
+        day.appendChild(humidity);
     });
 }
 
