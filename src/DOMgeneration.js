@@ -48,13 +48,16 @@ function generateCurrentDOM(currentAddress, currentConditions, currentTemp, curr
 }
 
 function generate15DayDOM(forecastArray){
-    const content = document.querySelector('.forecastdays');
+    const content = document.querySelector('.content');
     content.innerHTML = '';
+    const forecastdays = document.createElement('div');
+    forecastdays.classList.add('forecastdays');
+    content.appendChild(forecastdays);
 
     forecastArray.forEach(forecastDay => {
         const day = document.createElement('div');
         day.classList.add('day');
-        content.appendChild(day);
+        forecastdays.appendChild(day);
 
         const date = document.createElement('div');
         date.textContent = forecastDay.datetime.slice(5);
