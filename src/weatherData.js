@@ -18,19 +18,35 @@ const weather = (function(){
     let fifteenDays = '';
     
     
-    const generateCurrentParse = async function(location, startDate, endDate){
+    const generateCurrentParse = async function(location, degree){
         const raw = await fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/' + location + '?key=LK4KV98AZ6RNMYP4RLDSSSUWQ', {mode: 'cors'})
         currentParse = await raw.json();
         //allocate data:
         address = currentParse.resolvedAddress;
         currentCondition = currentParse.currentConditions.conditions;
-        currentTemp = currentParse.currentConditions.temp + '°F';
+        if(degree === '°F'){currentTemp = currentParse.currentConditions.temp + '°F';}
+        if(degree === '°C'){currentTemp = Math.round((currentParse.currentConditions.temp - 32) * 5/9 * 10)/10 + '°C';}
         currentIcon = convertIcon(currentParse.currentConditions.icon);
         fifteenDays = currentParse.days; 
         //translate 15-day icons:
         fifteenDays.forEach(day => {
             day.icon = convertIcon(day.icon);
         })
+        //add degree and convert if needed:
+        if(degree === '°F'){
+            fifteenDays.forEach(day => {
+                day.temp = day.temp + '°F';
+                day.tempmin = day.tempmin + '°F';
+                day.tempmax = day.tempmax + '°F';
+            })
+        }
+        if(degree === '°C'){
+            fifteenDays.forEach(day => {
+                day.temp = Math.round((day.temp - 32) * 5/9 * 10)/10 + '°C';
+                day.tempmin = Math.round((day.tempmin - 32) * 5/9 * 10)/10 + '°C';
+                day.tempmax = Math.round((day.tempmax - 32) * 5/9 * 10)/10 + '°C';
+            })
+        }
     }
     
     const convertIcon = (icon) => {

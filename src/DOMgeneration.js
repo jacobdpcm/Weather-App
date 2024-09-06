@@ -11,6 +11,34 @@ const generateSearch = (function(){
     searchInput.type = 'text';
     search.appendChild(searchInput);
 
+    const degreeSet = document.createElement('div');
+    search.appendChild(degreeSet); 
+
+    const fahrChoice = document.createElement('input');
+    fahrChoice.id = 'fahr';
+    fahrChoice.type = 'radio';
+    fahrChoice.name = 'degree';
+    fahrChoice.checked = true;
+    fahrChoice.value = '°F';
+    degreeSet.appendChild(fahrChoice);
+
+    const fahr = document.createElement('label');
+    fahr.htmlFor = 'fahr';
+    fahr.textContent = '°F';
+    degreeSet.appendChild(fahr);
+    
+    const celsiusChoice = document.createElement('input');
+    celsiusChoice.id = 'celsius';
+    celsiusChoice.type = 'radio';
+    celsiusChoice.name = 'degree';
+    celsiusChoice.value = '°C';
+    degreeSet.appendChild(celsiusChoice);
+
+    const celsius = document.createElement('label');
+    celsius.htmlFor = 'celsius';
+    celsius.textContent = '°C';
+    degreeSet.appendChild(celsius);
+
     const searchButton = document.createElement('button');
     searchButton.classList.add('getWeather');
     searchButton.textContent = 'Get Weather';
@@ -74,12 +102,12 @@ function generate15DayDOM(forecastArray){
 
         //temp
         const temp = document.createElement('div');
-        temp.textContent = forecastDay.temp + '°F';
+        temp.textContent = forecastDay.temp;
         day.appendChild(temp);
 
         //min and max temp
         const minmax = document.createElement('div');
-        minmax.textContent = 'Min: ' + forecastDay.tempmin + '°F,   Max: ' + forecastDay.tempmax + '°F'
+        minmax.textContent = 'Min: ' + forecastDay.tempmin + ',   Max: ' + forecastDay.tempmax;
         day.appendChild(minmax);
 
         //humidity

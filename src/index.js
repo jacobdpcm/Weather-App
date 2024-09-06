@@ -9,7 +9,8 @@ let searchLocationFocus = false;
 
 
 button.addEventListener('click', () => {
-    weather.generateCurrentParse(searchLocation.value)
+    const degree = document.querySelector('input[name="degree"]:checked')
+    weather.generateCurrentParse(searchLocation.value, degree.value)
     .then(() => {
         generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp(), weather.getCurrentIcon());
         generate15DayDOM(weather.getFifteenDays());
@@ -27,7 +28,8 @@ searchLocation.addEventListener('blur', () => {
 
 window.addEventListener('keydown', (e) => {
     if(e.key === 'Enter' && searchLocationFocus === true){
-        weather.generateCurrentParse(searchLocation.value)
+        const degree = document.querySelector('input[name="degree"]:checked')
+        weather.generateCurrentParse(searchLocation.value, degree.value)
         .then(() => {
         generateCurrentDOM(weather.getaddress(), weather.getcurrentCondition(), weather.getcurrentTemp(), weather.getCurrentIcon());
         generate15DayDOM(weather.getFifteenDays());
